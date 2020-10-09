@@ -56,14 +56,32 @@ function getSearchMethod(searchTerm){
     let cityHeader=document.getElementById('cityHeader');
     let windSpeed=document.getElementById('windSpeed');
     let weatherIcon=document.getElementById('documentIconImg');
+
     weatherIcon.src=' http://openweathermap.org/img/wn/'+resultFromServer.weather[0].icon+'@2x.png';
+    
     let resultDescription=resultFromServer.weather[0].description;
     weatherDescriptionHeader.innerText=resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
+    
     temperatureElement.innerHTML=Math.floor(resultFromServer.main.temp) + '&#176';
+    
     windSpeed.innerHTML = 'Winds at '+ Math.floor(resultFromServer.wind.speed)+' m/s';
+    
     humidityElement.innerHTML='Humidity levels at ' + resultFromServer.main.humidity + '%';
+    
     cityHeader.innerHTML=resultFromServer.name;
+
+    setPositionForWeatherInfo();
  }
+
+function setPositionForWeatherInfo(){
+    let weatherContainer=document.getElementById('weatherContainer');
+    let weatherContainerHeight= weatherContainer.clientHeight;
+    let weatherContainerWidth= weatherContainer.clientWidth;
+
+    weatherContainer.style.left = `calc(50% - ${weatherContainerWidth/2}px)`;
+    weatherContainer.style.top = `calc(50% - ${weatherContainerHeight/1.6}px)`;
+    weatherContainer.style.visibility = 'visible';
+}
 
  document.getElementById('searchBtn').addEventListener('click',() => {
      let searchTerm=document.getElementById('searchInput').value;
