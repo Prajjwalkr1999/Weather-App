@@ -10,7 +10,7 @@ function getSearchMethod(searchTerm){
 }
  function searchWeather(searchTerm){
      getSearchMethod(searchTerm);
-     fetch(`http://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`).then(result => {
+     fetch(`https://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`).then(result => {
         return result.json();
      }).then(result => {
          init(result);
@@ -83,7 +83,7 @@ function setPositionForWeatherInfo(){
     weatherContainer.style.visibility = 'visible';
 }
 
- document.getElementById('searchBtn').addEventListener('click',() => {
+document.getElementById('searchBtn').addEventListener('click',() => {
      let searchTerm=document.getElementById('searchInput').value;
      if(searchTerm)
         searchWeather(searchTerm);
